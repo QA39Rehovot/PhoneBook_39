@@ -1,3 +1,5 @@
+package tests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -37,7 +39,6 @@ public class LoginTests extends TestBase{
         pause(3000);
 //        Assert.assertTrue(wd.findElements(By.tagName("button")).size() > 0);
         Assert.assertTrue(isElementPresent(By.tagName("button")));
-
     }
     @Test
     public void loginNegativeTestWrongEmail(){
@@ -59,7 +60,6 @@ public class LoginTests extends TestBase{
         // assert
         pause(3000);
         Assert.assertTrue(isAlertPresent());
-
     }
     @Test
     public void loginNegativeTestWrongPassword(){
