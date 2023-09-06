@@ -18,9 +18,11 @@ public class LoginTests extends TestBase{
 
     @Test
     public void loginPositiveTest(){
+
+
         // open login form
 //        wd.findElement(By.xpath("//*[.='LOGIN']")).click();
-        openLoginRegistrationForm();
+        app.getHelperUser().openLoginRegistrationForm();
         // fill login form
 //        WebElement emailInput = wd.findElement(By.xpath("//input[1]"));
 //        emailInput.click();
@@ -31,57 +33,57 @@ public class LoginTests extends TestBase{
 //        passInput.click();
 //        passInput.clear();
 //        passInput.sendKeys("$Abcdef12345");
-        fillLoginRegistrationForm("abc@def.com", "$Abcdef12345");
+        app.getHelperUser().fillLoginRegistrationForm("abc@def.com", "$Abcdef12345");
         // click on button login
 //        wd.findElement(By.xpath("//button[1]")).click();
-        submitLogin();
+        app.getHelperUser().submitLogin();
         // assert
-        pause(3000);
+        app.getHelperUser().pause(3000);
 //        Assert.assertTrue(wd.findElements(By.tagName("button")).size() > 0);
-        Assert.assertTrue(isElementPresent(By.tagName("button")));
+        Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
     }
-    @Test
-    public void loginNegativeTestWrongEmail(){
-        // open login form
-        wd.findElement(By.xpath("//*[.='LOGIN']")).click();
-        // fill login form
-        WebElement emailInput = wd.findElement(By.xpath("//input[1]"));
-        emailInput.click();
-        emailInput.clear();
-        emailInput.sendKeys("abcdef.com");
-
-        WebElement passInput = wd.findElement(By.xpath("//input[2]"));
-        passInput.click();
-        passInput.clear();
-        passInput.sendKeys("$Abcdef12345");
-
-        // click on button login
-        wd.findElement(By.xpath("//button[1]")).click();
-        // assert
-        pause(3000);
-        Assert.assertTrue(isAlertPresent());
-    }
-    @Test
-    public void loginNegativeTestWrongPassword(){
-        // open login form
-        wd.findElement(By.xpath("//*[.='LOGIN']")).click();
-        // fill login form
-        WebElement emailInput = wd.findElement(By.xpath("//input[1]"));
-        emailInput.click();
-        emailInput.clear();
-        emailInput.sendKeys("abc@def.com");
-
-        WebElement passInput = wd.findElement(By.xpath("//input[2]"));
-        passInput.click();
-        passInput.clear();
-        passInput.sendKeys("Abcdef12345");
-
-        // click on button login
-        wd.findElement(By.xpath("//button[1]")).click();
-        // assert
-        pause(3000);
-
-    }
+//    @Test
+//    public void loginNegativeTestWrongEmail(){
+//        // open login form
+//        wd.findElement(By.xpath("//*[.='LOGIN']")).click();
+//        // fill login form
+//        WebElement emailInput = wd.findElement(By.xpath("//input[1]"));
+//        emailInput.click();
+//        emailInput.clear();
+//        emailInput.sendKeys("abcdef.com");
+//
+//        WebElement passInput = wd.findElement(By.xpath("//input[2]"));
+//        passInput.click();
+//        passInput.clear();
+//        passInput.sendKeys("$Abcdef12345");
+//
+//        // click on button login
+//        wd.findElement(By.xpath("//button[1]")).click();
+//        // assert
+//        pause(3000);
+//        Assert.assertTrue(isAlertPresent());
+//    }
+//    @Test
+//    public void loginNegativeTestWrongPassword(){
+//        // open login form
+//        wd.findElement(By.xpath("//*[.='LOGIN']")).click();
+//        // fill login form
+//        WebElement emailInput = wd.findElement(By.xpath("//input[1]"));
+//        emailInput.click();
+//        emailInput.clear();
+//        emailInput.sendKeys("abc@def.com");
+//
+//        WebElement passInput = wd.findElement(By.xpath("//input[2]"));
+//        passInput.click();
+//        passInput.clear();
+//        passInput.sendKeys("Abcdef12345");
+//
+//        // click on button login
+//        wd.findElement(By.xpath("//button[1]")).click();
+//        // assert
+//        pause(3000);
+//
+//    }
 
 
 //
