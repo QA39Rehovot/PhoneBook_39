@@ -42,6 +42,14 @@ public class LoginTests extends TestBase{
 //        Assert.assertTrue(wd.findElements(By.tagName("button")).size() > 0);
         Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
     }
+
+        @Test
+    public void loginNegativeTestWrongEmail(){
+            app.getHelperUser().openLoginRegistrationForm();
+            app.getHelperUser().fillLoginRegistrationForm("abcdef.com", "$Abcdef12345");
+            app.getHelperUser().submitLogin();
+            Assert.assertTrue(app.getHelperUser().isAlertPresent());
+        }
 //    @Test
 //    public void loginNegativeTestWrongEmail(){
 //        // open login form

@@ -20,6 +20,9 @@ public class HelperUser extends HelperBase{
     public void submitLogin(){
         wd.findElement(By.xpath("//button[1]")).click();
     }
+    public void submitRegistration(){
+        wd.findElement(By.xpath("//button[2]")).click();
+    }
     public void fillLoginRegistrationForm(String email, String password){
 //        WebElement emailInput = wd.findElement(By.xpath("//input[1]"));
 //        emailInput.click();

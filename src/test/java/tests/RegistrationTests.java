@@ -6,7 +6,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class RegistrationTests extends TestBase{
-//
+    @Test
+    public void registrationPositiveTest() {
+        int i = (int)(System.currentTimeMillis()/1000)%3600;
+        app.getHelperUser().openLoginRegistrationForm();
+        app.getHelperUser().fillLoginRegistrationForm("abc_" + i + "@def.com", "$Abcdef12345");
+        app.getHelperUser().submitRegistration();
+        Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
+    }
+        //
 //    @Test
 //    public void registrationPositiveTest(){
 //        // open login form
