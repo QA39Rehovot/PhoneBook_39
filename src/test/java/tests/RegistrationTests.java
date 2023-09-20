@@ -9,11 +9,17 @@ public class RegistrationTests extends TestBase{
     @Test
     public void registrationPositiveTest() {
         int i = (int)(System.currentTimeMillis()/1000)%3600;
+        String email = "abc_" + i + "@def.com";
+        String password = "$Abcdef12345";
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillLoginRegistrationForm("abc_" + i + "@def.com", "$Abcdef12345");
+//        app.getHelperUser().fillLoginRegistrationForm("abc_" + i + "@def.com", "$Abcdef12345");
+        app.getHelperUser().fillLoginRegistrationForm(email, password);
         app.getHelperUser().submitRegistration();
+        logger.info("registrationPositiveTest starts with:" + email + " & " + password);
         Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
     }
+
+
         //
 //    @Test
 //    public void registrationPositiveTest(){
