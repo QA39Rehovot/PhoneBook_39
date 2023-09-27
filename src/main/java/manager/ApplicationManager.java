@@ -15,6 +15,7 @@ public class ApplicationManager {
 //    WebDriver wd;
     EventFiringWebDriver wd;
     HelperUser helperUser;
+    HelperContact helperContact;
 
     public void init(){
         String link = "https://telranedu.web.app/home";
@@ -25,6 +26,7 @@ public class ApplicationManager {
         logger.info("Navigated to the link ---> " + link);
         wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         helperUser = new HelperUser(wd);
+        helperContact = new HelperContact(wd);
     }
 
     public void tearDown(){
@@ -35,5 +37,9 @@ public class ApplicationManager {
 
     public HelperUser getHelperUser() {
         return helperUser;
+    }
+
+    public HelperContact getHelperContact() {
+        return helperContact;
     }
 }
