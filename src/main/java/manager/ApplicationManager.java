@@ -2,6 +2,7 @@ package manager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,12 +12,15 @@ public class ApplicationManager {
 
     Logger logger = LoggerFactory.getLogger(ApplicationManager.class);
 
-    WebDriver wd;
+//    WebDriver wd;
+    EventFiringWebDriver wd;
     HelperUser helperUser;
 
     public void init(){
         String link = "https://telranedu.web.app/home";
-        wd = new ChromeDriver();
+//        wd = new ChromeDriver();
+        wd = new EventFiringWebDriver(new ChromeDriver());
+        wd.register(new WDListener());
         wd.navigate().to(link);
         logger.info("Navigated to the link ---> " + link);
         wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
