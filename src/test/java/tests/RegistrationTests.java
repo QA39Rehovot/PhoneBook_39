@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class RegistrationTests extends TestBase{
-    @Test
+    @Test(groups = {"positive"})
     public void registrationPositiveTest() {
         int i = (int)(System.currentTimeMillis()/1000)%3600;
         String email = "abc_" + i + "@def.com";

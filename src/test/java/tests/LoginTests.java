@@ -1,6 +1,7 @@
 package tests;
 
 import manager.NGListener;
+import manager.ProviderData;
 import models.Contact;
 import models.User;
 import org.openqa.selenium.By;
@@ -20,7 +21,7 @@ public class LoginTests extends TestBase{
 //        wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 //    }
 
-    @Test
+    @Test(groups = {"positive"})
     public void loginPositiveTest(){
 
 
@@ -47,7 +48,7 @@ public class LoginTests extends TestBase{
         Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
     }
 
-    @Test
+    @Test(groups = {"positive"})
     public void loginPositiveTestModel(){
 
         User user = User.builder()
@@ -64,8 +65,20 @@ public class LoginTests extends TestBase{
         app.getHelperUser().pause(3000);
         Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
     }
+    @Test(groups = {"positive"}, dataProvider = "userDTO", dataProviderClass = ProviderData.class)
+    public void loginPositiveUserDTO(User user){
+        // open login form
+        app.getHelperUser().openLoginRegistrationForm();
+        // fill login form
+        app.getHelperUser().fillLoginRegistrationForm(user.getEmail(), user.getPassword());
+        // click on button login
+        app.getHelperUser().submitLogin();
+        // assert
+        app.getHelperUser().pause(3000);
+        Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
+    }
 
-        @Test
+        @Test(groups = {"negative","smoke"})
     public void loginNegativeTestWrongEmail(){
             app.getHelperUser().openLoginRegistrationForm();
             app.getHelperUser().fillLoginRegistrationForm("abcdef.com", "$Abcdef12345");
