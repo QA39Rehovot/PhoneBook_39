@@ -1,11 +1,23 @@
 package tests;
 
+import manager.ProviderData;
+import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+
 public class RegistrationTests extends TestBase{
+
+    @BeforeMethod(alwaysRun = true)
+    public void precondition(){
+        if(app.getHelperUser().isLogged()){
+            app.getHelperUser().logout();
+        }
+    }
+
     @Test(groups = {"positive"})
     public void registrationPositiveTest() {
         int i = (int)(System.currentTimeMillis()/1000)%3600;
@@ -13,6 +25,16 @@ public class RegistrationTests extends TestBase{
         String password = "$Abcdef12345";
         app.getHelperUser().openLoginRegistrationForm();
 //        app.getHelperUser().fillLoginRegistrationForm("abc_" + i + "@def.com", "$Abcdef12345");
+        app.getHelperUser().fillLoginRegistrationForm(email, password);
+        app.getHelperUser().submitRegistration();
+        logger.info("registrationPositiveTest starts with:" + email + " & " + password);
+        Assert.assertTrue(app.getHelperUser().isElementPresent(By.tagName("button")));
+    }
+    @Test(groups = {"positive"}, dataProvider = "registrationCSV", dataProviderClass = ProviderData.class)
+    public void registrationPositiveTestCSV(User user) {
+        String email = user.getEmail();
+        String password = user.getPassword();
+        app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(email, password);
         app.getHelperUser().submitRegistration();
         logger.info("registrationPositiveTest starts with:" + email + " & " + password);

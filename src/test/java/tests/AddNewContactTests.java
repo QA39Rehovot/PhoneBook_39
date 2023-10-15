@@ -1,5 +1,6 @@
 package tests;
 
+import manager.ProviderData;
 import models.Contact;
 import models.User;
 import org.testng.Assert;
@@ -36,7 +37,13 @@ public class AddNewContactTests extends TestBase{
     app.getHelperContact().fillContactForm(contact);
     app.getHelperContact().submitContactForm();
     Assert.assertTrue(app.getHelperContact().isContactCreated(contact));
-
+}
+@Test(groups = {"positive","smoke"}, dataProvider = "contactDTO", dataProviderClass = ProviderData.class)
+    public void addNewContactPositiveDTO(Contact contact){
+    app.getHelperContact().openContactForm();
+    app.getHelperContact().fillContactForm(contact);
+    app.getHelperContact().submitContactForm();
+    Assert.assertTrue(app.getHelperContact().isContactCreated(contact));
 }
 
 }
