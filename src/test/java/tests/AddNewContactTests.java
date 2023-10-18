@@ -13,11 +13,11 @@ public class AddNewContactTests extends TestBase{
     @BeforeMethod(alwaysRun = true)
     public void precondition(){
         if(!app.getHelperUser().isLogged()) app.getHelperUser().login(
-                User.builder()
-                        .email("abc@def.com")
-                        .password("$Abcdef12345")
-                        .build()
-
+//                User.builder()
+//                        .email("abc@def.com")
+//                        .password("$Abcdef12345")
+//                        .build()
+        app.getEmail(), app.getPassword()
         );
     }
 
